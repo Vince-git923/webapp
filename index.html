@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body> 
+    
+    <div class="wrapper">
+        <div class="title">Data Baguio</div>
+       <div class="lr">
+        <div class="left">
+            <div class="powerB"><img src="images/power-button-svgrepo-com.svg"></img>Power</div>
+            <div class="tempB"><img src="images/temperature-svgrepo-com.svg"></img>Temperature</div>
+        </div>
+        <div class="right">
+           <div class="displaybox">
+
+           </div>
+            </div>
+            
+        </div>
+       </div>
+    
+    
+        <div class="powerTag">
+            <div>ON</div>
+            <div class="in">
+                <div class="out"></div>
+            </div>
+            <div>OFF</div>
+        </div>
+        <div class="tempTag">
+            <p class="temptext">Temperature Value:</p>
+            <div class="temp-box"></div>
+    
+        </div>
+   
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+    import {getDatabase, onValue, get, child,ref, } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js"; 
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCsVh6ZgmVlv0JmCQaEsZ_86VBiR7TWQ3o",
+      authDomain: "databaguio.firebaseapp.com",
+      databaseURL: "https://databaguio-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "databaguio",
+      storageBucket: "databaguio.appspot.com",
+      messagingSenderId: "979263279069",
+      appId: "1:979263279069:web:e192053fac09bbba6f7034"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+ 
+    const db = getDatabase();
+
+
+    let tempval = document.querySelector(".temp-box");
+    function getval(){
+        const dbRef = ref(db,'tempdata/tempval');
+        
+        onValue(dbRef,(snapshot)=>{
+           tempval.textContent = snapshot.val() + " °C";
+           console.log(snapshot.val())
+        })
+        
+        
+    }
+
+    getval()
+
+    
+   
+
+
+
+  </script>
+  <script src="index.js"></script>
+</html>
