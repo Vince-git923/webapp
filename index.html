@@ -29,7 +29,7 @@
     
         <div class="gasVal">
             <p class="gastext">Gas Detected:</p>
-            <div class="gasBox">haler</div>
+            <div class="gasBox"></div>
         </div>
         <div class="tempTag">
             <p class="temptext">Temperature Value:</p>
@@ -65,7 +65,7 @@
     let tempval = document.querySelector(".temp-box");
     function getval(){
         const dbRef = ref(db,'tempdata/tempval');
-        const dbRef1 = ref(db,'gas value');
+        const dbRef1 = ref(db,'gasdata/gasval');
         onValue(dbRef,(snapshot)=>{
            tempval.textContent = snapshot.val() + " °C";
            console.log(snapshot.val())
