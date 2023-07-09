@@ -13,8 +13,9 @@
         <div class="title">Data Baguio</div>
        <div class="lr">
         <div class="left">
-            <div class="powerB"><img src="images/power-button-svgrepo-com.svg"></img><p>Power</p></div>
+            <div class="gasB"><img src="images/gas.png"></img><p>Gas Sensor</p></div>
             <div class="tempB"><img src="images/temperature-svgrepo-com.svg"></img><p>Temperature</p></div>
+            <div class="pressureB"><img src="images/pressure-gauge.png"><p>Pressure</p></div>
         </div>
         <div class="right">
            <div class="displaybox">
@@ -26,12 +27,9 @@
        </div>
     
     
-        <div class="powerTag">
-            <div>ON</div>
-            <div class="in">
-                <div class="out"></div>
-            </div>
-            <div>OFF</div>
+        <div class="gasVal">
+            <p class="gastext">Gas Detected:</p>
+            <div class="gasBox">haler</div>
         </div>
         <div class="tempTag">
             <p class="temptext">Temperature Value:</p>
@@ -63,14 +61,22 @@
  
     const db = getDatabase();
 
-
+    let gasVal = document.querySelector(".gasBox");
     let tempval = document.querySelector(".temp-box");
     function getval(){
         const dbRef = ref(db,'tempdata/tempval');
-        
+        const dbRef1 = ref(db,'gas value');
         onValue(dbRef,(snapshot)=>{
            tempval.textContent = snapshot.val() + " °C";
            console.log(snapshot.val())
+
+           
+        })
+        onValue(dbRef1,(snapshot)=>{
+           tempval.textContent = snapshot.val();
+           console.log(snapshot.val())
+
+           
         })
         
         
