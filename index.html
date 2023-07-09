@@ -68,13 +68,13 @@
         const dbRef1 = ref(db,'gasdata/gasval');
         onValue(dbRef,(snapshot)=>{
            tempval.textContent = snapshot.val() + " °C";
-           console.log(snapshot.val())
+           
 
            
         })
-        onValue(dbRef1,(snapshot)=>{
+        onValue(dbRef1,(snapshot1)=>{
            gasVal.textContent = snapshot.val();
-           console.log(snapshot.val())
+           console.log(snapshot1.val())
 
            
         })
